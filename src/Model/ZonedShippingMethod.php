@@ -86,19 +86,6 @@ class ZonedShippingMethod extends ShippingMethod
     {
         $fields = parent::getCMSFields();
 
-        $displayFieldsList = [
-            "ZoneID" =>  "Zone",
-            "WeightMin" => "WeightMin",
-            "WeightMax" => "WeightMax",
-            "VolumeMin" => "VolumeMin",
-            "VolumeMax" => "VolumeMax",
-            "ValueMin" => "ValueMin",
-            "ValueMax" => "ValueMax",
-            "QuantityMin" => "QuantityMin",
-            "QuantityMax" => "QuantityMax",
-            "Rate" => "Rate"
-        ];
-
         $fields->fieldByName('Root')->removeByName("Rates");
         if ($this->isInDB()) {
             $config = new GridFieldConfig_RelationEditor();
@@ -109,8 +96,7 @@ class ZonedShippingMethod extends ShippingMethod
                 $config
             );
 
-            $config->getComponentByType(GridFieldDataColumns::class)
-                ->setDisplayFields($displayFieldsList);
+            $config->getComponentByType(GridFieldDataColumns::class);
 
             $fields->addFieldToTab("Root.Main", $gridField);
         }
