@@ -97,7 +97,10 @@ class TableShippingMethod extends ShippingMethod
             $tr = $tr->filter($addressFilters);
         }
 
-        $tr = $tr->sort("LENGTH(\"SilverShop_RegionRestriction\".\"PostalCode\") DESC, \"SilverShop_TableShippingRate\".\"Rate\" ASC")
+        $tr = $tr->sort([
+                'PostalCode' => 'DESC',
+                'Rate' => 'ASC',
+            ])
             ->first();
 
         if ($tr) {
